@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "drata-python-api-client"
-version = "v1"
+version = "1.0.1"
 description = "A client library for accessing Drata's open API"
 authors = []
 readme = "README.md"
