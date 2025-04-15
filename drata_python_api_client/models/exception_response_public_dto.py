@@ -64,7 +64,8 @@ class ExceptionResponsePublicDto:
         from ..models.exception_response_public_dto_debug_info import ExceptionResponsePublicDtoDebugInfo
 
         d = dict(src_dict)
-        name = d.pop("name")
+        if name := d.pop("name", UNSET) is UNSET:
+            name = None
 
         status_code = d.pop("statusCode")
 

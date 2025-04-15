@@ -66,7 +66,6 @@ class ExceptionResponseDto:
         d = dict(src_dict)
         if name := d.pop("name", UNSET) is UNSET:
             name = None
-        name = d.pop("name")
 
         status_code = d.pop("statusCode")
 
