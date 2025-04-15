@@ -75,7 +75,7 @@ class ExceptionResponsePublicDto:
 
         _debug_info = d.pop("debugInfo", UNSET)
         debug_info: Union[Unset, ExceptionResponsePublicDtoDebugInfo]
-        if isinstance(_debug_info, Unset):
+        if isinstance(_debug_info, Unset) or _debug_info is None:
             debug_info = UNSET
         else:
             debug_info = ExceptionResponsePublicDtoDebugInfo.from_dict(_debug_info)
