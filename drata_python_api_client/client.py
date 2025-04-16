@@ -46,6 +46,7 @@ class AuthenticatedClient:
     _httpx_args: dict[str, Any] = field(factory=dict, kw_only=True, alias="httpx_args")
     _client: Optional[httpx.Client] = field(default=None, init=False)
     _async_client: Optional[httpx.AsyncClient] = field(default=None, init=False)
+    _base_url: Optional[str] = field(default=None, init=False)
 
     token: str
     prefix: str = "Bearer"
