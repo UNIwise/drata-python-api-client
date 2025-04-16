@@ -56,7 +56,7 @@ class AuthenticatedClient:
         if self._region not in ["EU", "US", "APAC"]:
             raise ValueError(f"Invalid region: {self._region}. Must be one of 'EU', 'US', or 'APAC'.")
         if self._region == "EU":
-            self._base_url = "https://pubic-api.eu.drata.com/public"
+            self._base_url = "https://public-api.eu.drata.com/public"
         elif self._region == "US":
             self._base_url = "https://public-api.drata.com/public"
         elif self._region == "APAC":
