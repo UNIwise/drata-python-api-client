@@ -4,7 +4,7 @@ from typing import Any, Optional, Union
 import httpx
 
 from ... import errors
-from ...client import AuthenticatedClient, Client
+from ...client import AuthenticatedClient
 from ...models.exception_response_dto import ExceptionResponseDto
 from ...models.exception_response_public_dto import ExceptionResponsePublicDto
 from ...models.questionnaire_sent_request_public_dto import QuestionnaireSentRequestPublicDto
@@ -34,7 +34,7 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Optional[Union[ExceptionResponseDto, ExceptionResponsePublicDto, QuestionnairesSentResponsePublicDto]]:
     if response.status_code == 201:
         response_201 = QuestionnairesSentResponsePublicDto.from_dict(response.json())
@@ -71,7 +71,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Response[Union[ExceptionResponseDto, ExceptionResponsePublicDto, QuestionnairesSentResponsePublicDto]]:
     return Response(
         status_code=HTTPStatus(response.status_code),

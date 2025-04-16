@@ -4,7 +4,7 @@ from typing import Any, Optional, Union
 import httpx
 
 from ... import errors
-from ...client import AuthenticatedClient, Client
+from ...client import AuthenticatedClient
 from ...models.device_public_controller_get_device_expand_item import DevicePublicControllerGetDeviceExpandItem
 from ...models.device_response_id_public_dto import DeviceResponseIdPublicDto
 from ...models.exception_response_dto import ExceptionResponseDto
@@ -40,7 +40,7 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Optional[Union[DeviceResponseIdPublicDto, ExceptionResponseDto, ExceptionResponsePublicDto]]:
     if response.status_code == 200:
         response_200 = DeviceResponseIdPublicDto.from_dict(response.json())
@@ -77,7 +77,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Response[Union[DeviceResponseIdPublicDto, ExceptionResponseDto, ExceptionResponsePublicDto]]:
     return Response(
         status_code=HTTPStatus(response.status_code),

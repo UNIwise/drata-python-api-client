@@ -4,7 +4,7 @@ from typing import Any, Optional, Union
 import httpx
 
 from ... import errors
-from ...client import AuthenticatedClient, Client
+from ...client import AuthenticatedClient
 from ...models.exception_response_dto import ExceptionResponseDto
 from ...models.ticket_create_response_public_dto import TicketCreateResponsePublicDto
 from ...models.tickets_create_request_public_dto import TicketsCreateRequestPublicDto
@@ -35,7 +35,7 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Optional[
     Union[ExceptionResponseDto, TicketCreateResponsePublicDto, TicketsPublicControllerCreateTicketResponse201]
 ]:
@@ -78,7 +78,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Response[
     Union[ExceptionResponseDto, TicketCreateResponsePublicDto, TicketsPublicControllerCreateTicketResponse201]
 ]:

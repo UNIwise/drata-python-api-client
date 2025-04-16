@@ -4,7 +4,7 @@ from typing import Any, Optional, Union
 import httpx
 
 from ... import errors
-from ...client import AuthenticatedClient, Client
+from ...client import AuthenticatedClient
 from ...models.company_info_private_access_request_public_dto import CompanyInfoPrivateAccessRequestPublicDto
 from ...models.company_info_response_public_dto import CompanyInfoResponsePublicDto
 from ...models.exception_response_dto import ExceptionResponseDto
@@ -40,7 +40,7 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Optional[Union[CompanyInfoResponsePublicDto, ExceptionResponseDto]]:
     if response.status_code == 200:
         response_200 = CompanyInfoResponsePublicDto.from_dict(response.json())
@@ -73,7 +73,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Response[Union[CompanyInfoResponsePublicDto, ExceptionResponseDto]]:
     return Response(
         status_code=HTTPStatus(response.status_code),

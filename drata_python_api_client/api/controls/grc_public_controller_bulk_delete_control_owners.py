@@ -4,7 +4,7 @@ from typing import Any, Optional, Union
 import httpx
 
 from ... import errors
-from ...client import AuthenticatedClient, Client
+from ...client import AuthenticatedClient
 from ...models.control_owner_bulk_request_public_dto import ControlOwnerBulkRequestPublicDto
 from ...models.control_owners_response_public_dto import ControlOwnersResponsePublicDto
 from ...models.exception_response_dto import ExceptionResponseDto
@@ -33,7 +33,7 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Optional[Union[ControlOwnersResponsePublicDto, ExceptionResponseDto, ExceptionResponsePublicDto]]:
     if response.status_code == 200:
         response_200 = ControlOwnersResponsePublicDto.from_dict(response.json())
@@ -74,7 +74,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Response[Union[ControlOwnersResponsePublicDto, ExceptionResponseDto, ExceptionResponsePublicDto]]:
     return Response(
         status_code=HTTPStatus(response.status_code),

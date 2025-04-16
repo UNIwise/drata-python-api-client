@@ -4,7 +4,7 @@ from typing import Any, Optional, Union
 import httpx
 
 from ... import errors
-from ...client import AuthenticatedClient, Client
+from ...client import AuthenticatedClient
 from ...models.connections_public_controller_update_idp_connection_with_json_file_response_200 import (
     ConnectionsPublicControllerUpdateIdpConnectionWithJsonFileResponse200,
 )
@@ -35,7 +35,7 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Optional[Union[ConnectionsPublicControllerUpdateIdpConnectionWithJsonFileResponse200, ExceptionResponseDto]]:
     if response.status_code == 200:
         response_200 = ConnectionsPublicControllerUpdateIdpConnectionWithJsonFileResponse200.from_dict(response.json())
@@ -68,7 +68,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Response[Union[ConnectionsPublicControllerUpdateIdpConnectionWithJsonFileResponse200, ExceptionResponseDto]]:
     return Response(
         status_code=HTTPStatus(response.status_code),

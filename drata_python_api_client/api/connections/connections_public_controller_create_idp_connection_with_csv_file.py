@@ -4,7 +4,7 @@ from typing import Any, Optional, Union
 import httpx
 
 from ... import errors
-from ...client import AuthenticatedClient, Client
+from ...client import AuthenticatedClient
 from ...models.connections_public_controller_create_idp_connection_with_csv_file_response_201 import (
     ConnectionsPublicControllerCreateIdpConnectionWithCsvFileResponse201,
 )
@@ -22,7 +22,7 @@ def _get_kwargs() -> dict[str, Any]:
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Optional[Union[ConnectionsPublicControllerCreateIdpConnectionWithCsvFileResponse201, ExceptionResponseDto]]:
     if response.status_code == 201:
         response_201 = ConnectionsPublicControllerCreateIdpConnectionWithCsvFileResponse201.from_dict(response.json())
@@ -55,7 +55,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Response[Union[ConnectionsPublicControllerCreateIdpConnectionWithCsvFileResponse201, ExceptionResponseDto]]:
     return Response(
         status_code=HTTPStatus(response.status_code),

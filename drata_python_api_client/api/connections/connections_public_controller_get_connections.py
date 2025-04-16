@@ -4,7 +4,7 @@ from typing import Any, Optional, Union
 import httpx
 
 from ... import errors
-from ...client import AuthenticatedClient, Client
+from ...client import AuthenticatedClient
 from ...models.connections_compact_response_public_dto import ConnectionsCompactResponsePublicDto
 from ...models.connections_public_controller_get_connections_provider_types_item import (
     ConnectionsPublicControllerGetConnectionsProviderTypesItem,
@@ -72,7 +72,7 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Optional[Union[ConnectionsCompactResponsePublicDto, ExceptionResponseDto]]:
     if response.status_code == 200:
         response_200 = ConnectionsCompactResponsePublicDto.from_dict(response.json())
@@ -105,7 +105,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Response[Union[ConnectionsCompactResponsePublicDto, ExceptionResponseDto]]:
     return Response(
         status_code=HTTPStatus(response.status_code),

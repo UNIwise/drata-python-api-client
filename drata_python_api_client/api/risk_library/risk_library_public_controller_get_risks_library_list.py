@@ -4,7 +4,7 @@ from typing import Any, Optional, Union
 import httpx
 
 from ... import errors
-from ...client import AuthenticatedClient, Client
+from ...client import AuthenticatedClient
 from ...models.exception_response_dto import ExceptionResponseDto
 from ...models.exception_response_public_dto import ExceptionResponsePublicDto
 from ...models.risk_library_public_controller_get_risks_library_list_risk_filter import (
@@ -74,7 +74,7 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Optional[Union[ExceptionResponseDto, ExceptionResponsePublicDto, RisksLibraryPaginatedResponsePublicDto]]:
     if response.status_code == 200:
         response_200 = RisksLibraryPaginatedResponsePublicDto.from_dict(response.json())
@@ -111,7 +111,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient, response: httpx.Response
 ) -> Response[Union[ExceptionResponseDto, ExceptionResponsePublicDto, RisksLibraryPaginatedResponsePublicDto]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
